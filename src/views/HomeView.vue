@@ -1,14 +1,11 @@
 <template>
   <el-container>
-    <el-header>kratos框架小练习</el-header>
+    <el-header>Go课程小练习</el-header>
     <el-main>
       <el-row justify="center">
-        <el-col :span="24" >
-          <el-skeleton :rows="5" animated />
+        <el-col :xs="20" :span="12" >
           <div class="grid-content">
-            <el-divider>
-              <h1>小清单</h1>
-            </el-divider>
+            <el-divider>小清单</el-divider>
             <TodoList></TodoList>
           </div>
         </el-col>

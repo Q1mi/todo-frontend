@@ -2,24 +2,37 @@
     <el-card class="box-card">
         <el-row :gutter="20">
             <el-col :span="16" :offset="2">
-                <el-input v-model="newTitle" size placeholder="请输入待办事项..." />
+                <el-input 
+                v-model="newTitle" 
+                size="large"
+                maxlength="50"
+                placeholder="请输入待办事项..." 
+                />
             </el-col>
             <el-col :span="6">
-                <el-button type="primary" icon="el-icon-plus" @click="handleAdd" circle></el-button>
+                <el-button size="large" type="primary" @click="handleAdd" circle>
+                    <el-icon style="vertical-align: middle" ><Plus /></el-icon>
+                </el-button>
             </el-col>
         </el-row>
         <el-divider></el-divider>
-        <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
+        <el-table :data="tableData" size="large" style="width: 100%" :row-class-name="tableRowClassName">
             <el-table-column type="index" width="50"></el-table-column>
             <el-table-column align="center" label="待办事项" prop="title"></el-table-column>
             <el-table-column align="right" label="操作">
                 <template #default="scope">
-                    <el-button type="success" icon="el-icon-check" v-show="!scope.row.status"
-                        @click="handleEdit(scope.$index, scope.row)" circle></el-button>
-                    <el-button type="warning" icon="el-icon-refresh-left" v-show="scope.row.status"
-                        @click="handleEdit(scope.$index, scope.row)" circle></el-button>
-                    <el-button type="danger" icon="el-icon-close" @click="handleDelete(scope.$index, scope.row.id)"
-                        circle></el-button>
+                    <el-button type="success" v-show="!scope.row.status"
+                        @click="handleEdit(scope.$index, scope.row)" circle>
+                        <el-icon><Check /></el-icon>
+                    </el-button>
+                    <el-button type="warning" v-show="scope.row.status"
+                        @click="handleEdit(scope.$index, scope.row)" circle>
+                        <el-icon><RefreshLeft /></el-icon>
+                    </el-button>
+                    <el-button type="danger" @click="handleDelete(scope.$index, scope.row.id)"
+                        circle>
+                        <el-icon><Close /></el-icon>
+                    </el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -50,8 +63,8 @@ export default {
         },
         getTodoList() {
             this.axios
-                .get("/v1/todo")
-                .then(response => (this.tableData = response.data));
+                .get("/v1/todos")
+                .then(response => (this.tableData = response.data.data));
         },
         handleEdit(index, row) {
             let messageSuffix = row.status ? " 置为未完成" : " 置为已完成";
@@ -116,5 +129,6 @@ export default {
 
 .el-table .success-row {
     text-decoration: line-through;
+    background-color: #FAFAFA;
 }
 </style>

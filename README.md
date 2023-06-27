@@ -1,6 +1,6 @@
 # todo-frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Go课程小练习配套的前端代码 with Vue 3 in Vite.
 
 ## Recommended IDE Setup
 
