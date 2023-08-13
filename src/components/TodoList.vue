@@ -51,7 +51,7 @@ export default {
     mounted() {
         this.axios
             .get("/v1/todos")
-            .then(response => (this.tableData = response.data.data));
+            .then(response => (this.tableData = response.data.data.data));
     },
     methods: {
         tableRowClassName({ row }) {
