@@ -64,7 +64,7 @@ export default {
         getTodoList() {
             this.axios
                 .get("/v1/todos")
-                .then(response => (this.tableData = response.data.data));
+                .then(response => (this.tableData = response.data.data.data));
         },
         handleEdit(index, row) {
             let messageSuffix = row.status ? " 置为未完成" : " 置为已完成";
